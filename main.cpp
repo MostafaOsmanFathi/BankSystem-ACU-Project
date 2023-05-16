@@ -102,7 +102,9 @@ int main() {
                         else if(x==-2){
                             cout<<"Name does not exist"<<endl;
                         }
-                        else {cout<<"passowrd is worng"<<endl;}
+                        else {
+                            cout<<"passowrd is worng"<<endl;
+                        }
                     }
                 }
 
@@ -116,8 +118,9 @@ void creat_account(){
 /**
 * task 1
 */
-    Name[0]="mostfa";
+    Name[0]="mostafa";
     Password[0]="osman";
+    numofAccount++;
 
 }
 
@@ -207,7 +210,7 @@ int Login_check(){
     string LUserName, Lpassowrd;
     cout<<"enter your name:";cin>>LUserName;
     cout<<"enter your password:";cin>>Lpassowrd;
-    if (numofAccount==0)return 0;
+    if (numofAccount==0)return -2;
     else {
         for (int i = 0; i < numofAccount; ++i) {
             if (LUserName == Name[i]) {
