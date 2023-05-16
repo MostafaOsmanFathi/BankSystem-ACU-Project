@@ -9,12 +9,11 @@ string *Email=new string[1];
 string *Password=new string[1];
 int *Balnce=new int[1];
 
-/**
 //string Name[100];
 //string Email[100];
 //string Password[100];
 //int Balnce[100];
-*/
+
 
 int numofAccount{0};
 /**
@@ -32,21 +31,29 @@ int Login_check();
 //it return the index of the account it return x>0 if it the login is right and -1 if password is wrong and -2 if it didn't found the name
 ///=====================================================================
 ///================================== Needed function ==================
+
 void creat_account();
 /**ask the user for his info like name and email and password and all of these staff
  * and add the new account to the last index by num of account and don't forget to increment the numofAccount by one
  * */
 
-void search_for_name();//ask the user to enter a name and tell him if does it exsit or not
+/************************************************/
+bool find_Name(string searching_name);
+//just take the input form the praater list and return what if this name is exsit or not , just return true or false
 
-void show_account(int index_of_the_account);//by using index of the account print the all user staff like name and email and visa expire data
+void Search_for_name();//ask the user to enter a name and tell him if does it exsit or not
 
-void Deposit(int index_of_the_account);
+/************************************************/
+
+
+void show_account(const int index_of_the_account);//by using index of the account print the all user staff like name and email and visa expire data
+
+void Deposit(const int index_of_the_account);
 /**it will go balnce of the index that in the pramterlist
  * and ask the user for the amount that he want to add and then add the mony
  * */
 
-void Withdraw(int index_of_the_account);
+void Withdraw(const int index_of_the_account);
 /**check if the mony amount that the user want to take is greater than of the account or not
  * and if the accunt has enough mony substract the mony from it's balnce if not tell him not enough mony
  * */
@@ -54,8 +61,6 @@ void Withdraw(int index_of_the_account);
 void Check_Balance(int index_of_the_account);// tell the user it's balnce accsese the balnce from index that is provided in the pramater list
 
 void check_visa_validation();   //cheack if the visa has expired or not
-
-
 
 ///======================================================================
 int main() {
@@ -73,7 +78,7 @@ int main() {
                     cout<<"==============================="<<endl;
                     if (islocked==false){
                         switch (Interface()) {
-                            case 1:   search_for_name();    //search fucntion and tell us what if entered account name exsit or not
+                            case 1:   Search_for_name();    //search fucntion and tell us what if entered account name exsit or not
                                 break;
                             case 2:    creat_account();  //creat a New account function
                                 break;
@@ -126,9 +131,15 @@ void creat_account(){
 /**
 * task 1
 */
-    Name[0]="mostafa";
-    Password[0]="osman";
-    numofAccount++;
+
+
+}
+
+bool find_Name(string searching_name){
+
+/**
+*task 2
+*/
 
 }
 
@@ -141,7 +152,7 @@ void search_for_name(){
 }
 
 
-void show_account(int index_of_the_account){
+void show_account(const int index_of_the_account){
 
 /**
 *task 3
@@ -171,7 +182,6 @@ void Check_Balance(int index_of_the_account){
 /**
 *task 6
 */
-
 }
 void check_visa_validation(){
 
@@ -215,6 +225,7 @@ int Interface(){
 
 
 int Login_check(){
+
     string LUserName, Lpassowrd;
     cout<<"enter your name:";cin>>LUserName;
     cout<<"enter your password:";cin>>Lpassowrd;
