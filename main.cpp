@@ -53,7 +53,7 @@ void check_visa_validation();   //cheack if the visa has expired or not
 int main() {
         cout<<"=============== Welcome to our Bank system============="<<endl;
         cout<<"your the first user and you don't have accounts"<<endl;
-        cout<<"if you want to make a new accoutt press (Y,y)"<<endl;
+        cout<<"if you want to make a new accoutt press (Y,y): ";
             char choice;cin>>choice;
             if (choice=='y'||choice=='Y'){
                     ///=== new user must have a new account===
@@ -62,7 +62,7 @@ int main() {
                     bool islocked{true};
                     int current_account_location;
                 while (true){
-                    cout<<"===============================";
+                    cout<<"==============================="<<endl;
                     if (islocked==false){
                         switch (Interface()) {
                             case 1:   search_for_name();    //search fucntion and tell us what if entered account name exsit or not

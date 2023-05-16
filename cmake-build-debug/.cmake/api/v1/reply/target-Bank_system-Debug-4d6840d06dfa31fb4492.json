@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "testPro.exe"
+			"path" : "Bank_system.exe"
 		},
 		{
-			"path" : "testPro.pdb"
+			"path" : "Bank_system.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -56,7 +56,7 @@
 			]
 		}
 	],
-	"id" : "testPro::@6890427a1f51a3e7e1df",
+	"id" : "Bank_system::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -76,8 +76,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "testPro",
-	"nameOnDisk" : "testPro.exe",
+	"name" : "Bank_system",
+	"nameOnDisk" : "Bank_system.exe",
 	"paths" : 
 	{
 		"build" : ".",

@@ -14,6 +14,15 @@
 # EXTERNAL cache entries
 ########################
 
+//Value Computed by CMake
+Bank_system_BINARY_DIR:STATIC=C:/Users/mo528/CLionProjects/Sctions/oopagine/testPro/cmake-build-debug
+
+//Value Computed by CMake
+Bank_system_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+Bank_system_SOURCE_DIR:STATIC=C:/Users/mo528/CLionProjects/Sctions/oopagine/testPro
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=C:/Program Files/JetBrains/CLion 2022.3.3/bin/mingw/bin/addr2line.exe
 
@@ -157,7 +166,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=testPro
+CMAKE_PROJECT_NAME:STATIC=Bank_system
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=C:/Program Files/JetBrains/CLion 2022.3.3/bin/mingw/bin/ranlib.exe

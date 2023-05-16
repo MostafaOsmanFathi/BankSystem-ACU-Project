@@ -27,7 +27,7 @@
 					[
 						0
 					],
-					"name" : "testPro",
+					"name" : "Bank_system",
 					"targetIndexes" : 
 					[
 						0
@@ -38,9 +38,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "testPro::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-testPro-Debug-bd1ab6262225518ac56a.json",
-					"name" : "testPro",
+					"id" : "Bank_system::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Bank_system-Debug-4d6840d06dfa31fb4492.json",
+					"name" : "Bank_system",
 					"projectIndex" : 0
 				}
 			]
