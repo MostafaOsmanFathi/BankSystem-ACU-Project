@@ -8,6 +8,14 @@ string *Name=new string[1];
 string *Email=new string[1];
 string *Password=new string[1];
 int *Balnce=new int[1];
+
+/**
+//string Name[100];
+//string Email[100];
+//string Password[100];
+//int Balnce[100];
+*/
+
 int numofAccount{0};
 /**
 string *Visa_Time=new string [1];
@@ -77,11 +85,11 @@ int main() {
                                 break;
                             case 6:   Check_Balance(current_account_location);//Check_Balance tell us how much this account have accout
                                 break;
-                            case 7:check_visa_validation();//check the visa is valid or not
+                            case 7:     check_visa_validation();//check the visa is valid or not
                                 break;
                             case 8:
                             case 9:
-                                islocked= false;
+                                islocked= true;
                                 break;
                             case 10:cridet(); //cridet of the crieator
                                 break;
@@ -92,14 +100,14 @@ int main() {
 
 
                     }else{
-                        int x=Login_check();
-                        if (x>=0){
+                        int CheckTest=Login_check();
+                        if (CheckTest>=0){
                             islocked=false;
-                            current_account_location=x;
+                            current_account_location=CheckTest;
                             cout<<"welcome "<<Name[current_account_location]<<" to your account"<<endl;
                             continue;
                         }
-                        else if(x==-2){
+                        else if(CheckTest==-2){
                             cout<<"Name does not exist"<<endl;
                         }
                         else {
