@@ -1,13 +1,22 @@
 #include <iostream>
+#include <vector>
 #include <ctime>
 #include <cmath>
 #include <iomanip>
 using namespace std;
 
-string *Name=new string[1];
-string *Email=new string[1];
-string *Password=new string[1];
-int *Balnce=new int[1];
+//string *Name=new string[1];
+//string *Email=new string[1];
+//string *Password=new string[1];
+//int *Balnce=new int[1];
+
+
+vector<string>Name;
+vector<string>Email;
+vector<string>Password;
+vector<int>Balnce;
+
+
 
 //string Name[100];
 //string Email[100];
@@ -130,25 +139,54 @@ void creat_account(){
 /**
 * task 1
 */
+//test case on the regular array
+//Name[0]="mostafa";
+//Password[0]="1234";
+//numofAccount++;
+//Name[1]="aka";
+//Password[1]="1234";
+//numofAccount++;
+
+Name.push_back("mostafa");
+Password.push_back("1234");
+numofAccount++;
+Name.push_back("osm");
+Password.push_back("1234");
+numofAccount++;
 
 
 }
 
 bool find_Name(string searching_name){
+        /// Samuel Malak (task 2)
+    // Search for the name in the array.
+    for (int i = 0; i < numofAccount; i++) {
+        if (Name[i] == searching_name) {
+            //if the name is exisit return true
+            return true;
+        }
+    }
 
-/**
-*task 2
-*/
-
+    // The name was not found.
     return false;
 }
 
 void Search_for_name(){
+    /// Samuel Malak (task 2)
+    string searchingName;
+    cout << "Enter the name to search for: ";
+    cin >> searchingName;
 
-/**
-*task 2
-*/
+    // Check if the name is in the list.
+    bool found = find_Name(searchingName);
 
+    // Print the result.
+    if (found) {
+        cout << "The name " << searchingName << " was found in the list." << endl;
+    }
+    else {
+        cout << "The name " << searchingName << " was not found in the list." << endl;
+    }
 }
 
 
@@ -193,11 +231,11 @@ void check_visa_validation(){
 ///===========================================
 void end_program(){
     cout<<endl<<"thanks for using our program"<<endl;
-    delete [] Name;
-    delete [] Email;
-    delete [] Password;
-    ///delete [] Visa_Time;
-    delete [] Balnce;
+//    delete [] Name;
+//    delete [] Email;
+//    delete [] Password;
+//    ///delete [] Visa_Time;
+//    delete [] Balnce;
     exit(0);
 }
 
