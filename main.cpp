@@ -15,7 +15,7 @@ int *Balnce=new int[1];
 //int Balnce[100];
 
 
-int numofAccount{0};
+    int numofAccount{0};
 /**
 string *Visa_Time=new string [1];
 */
@@ -38,8 +38,7 @@ void creat_account();
  * */
 
 /************************************************/
-bool find_Name(string searching_name);
-//just take the input form the praater list and return what if this name is exsit or not , just return true or false
+bool find_Name(string searching_name);//just take the input form the praater list and return what if this name is exsit or not , just return true or false
 
 void Search_for_name();//ask the user to enter a name and tell him if does it exsit or not
 
@@ -141,9 +140,10 @@ bool find_Name(string searching_name){
 *task 2
 */
 
+    return false;
 }
 
-void search_for_name(){
+void Search_for_name(){
 
 /**
 *task 2
