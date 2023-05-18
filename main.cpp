@@ -147,11 +147,15 @@ void creat_account(){
 //Password[1]="1234";
 //numofAccount++;
 
+///test cases using vector
 Name.push_back("mostafa");
 Password.push_back("1234");
+Balnce.push_back(200);
 numofAccount++;
+
 Name.push_back("osm");
 Password.push_back("1234");
+Balnce.push_back(50);
 numofAccount++;
 
 
@@ -200,10 +204,12 @@ void show_account(const int index_of_the_account){
 
 
 void Deposit(int index_of_the_account){
-
-/**
-*task 4
-*/
+    //Omar maged gomaa (task 2)
+    int x;
+    cout<< " enter the amount of money you want to deposit :";
+    cin>> x;
+    Balnce [index_of_the_account] = (x + Balnce [index_of_the_account]);
+    cout<< "transaction completed and now you have "<<Balnce[index_of_the_account]<<"$"<<endl;
 
 }
 
