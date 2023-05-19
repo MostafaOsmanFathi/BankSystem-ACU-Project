@@ -1,7 +1,6 @@
 #include <iostream>
-#include <vector>
+#include <string>
 #include <ctime>
-#include <cmath>
 #include <iomanip>
 using namespace std;
 
@@ -174,10 +173,10 @@ void show_account(const int index_of_the_account){
 
 void Deposit(int index_of_the_account){
     //Omar maged gomaa (task 4)
-    int x;
+    int amountOfMony;
     cout<< " enter the amount of money you want to deposit :";
-    cin>> x;
-    Balnce [index_of_the_account] = (x + Balnce [index_of_the_account]);
+    cin>> amountOfMony;
+    Balnce [index_of_the_account] = (amountOfMony + Balnce [index_of_the_account]);
     cout<< "transaction completed and now you have "<<Balnce[index_of_the_account]<<"$"<<endl;
 
 }
@@ -197,12 +196,20 @@ void Check_Balance(const int index_of_the_account){
     cout<<"Your current balance is: "<<Balnce[index_of_the_account]<<"$"<<endl;
 }
 void check_visa_validation(const int index_of_the_account){
-    time_t now = time(0); // get current date and time
-    tm* ltm = localtime(&now);
-    int currentYear= 1900 + ltm->tm_year; // print the year
-    int currentMonth= 1 + ltm->tm_mon; // print month number
-    int currentDay= ltm->tm_mday; // print the day
+    string monthes[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+    time_t now=time(0);// get time current Time in sec
+    string timeInString= ::ctime(&now); //make the sec Time to readable string
 
+    int currentYear= stoi(timeInString.substr(timeInString.size()-5,4));//cut the year part from ctime string
+    string month=timeInString.substr(4,3);//cut the month part from ctime string
+    int currentDay= stoi(timeInString.substr(8,2));//cut the Day part from ctime string
+
+    int currentMonth{0};//change the month name form name to nuber for example jan will be number 1 mar will be number 2
+    for (int i = 0; i <12; ++i) {
+        if (month==monthes[i]) { currentMonth = i + 1;break; }
+    }
+
+    //if the visa time is vialed will print that otherwise will print that visa is expaired
     if (currentYear<year[index_of_the_account]||
         currentYear==year[index_of_the_account] && currentMonth<month[index_of_the_account]||
         currentYear==year[index_of_the_account] && currentMonth==month[index_of_the_account] && currentDay<day[index_of_the_account]){
