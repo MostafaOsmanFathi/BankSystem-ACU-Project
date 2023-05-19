@@ -5,25 +5,10 @@
 #include <iomanip>
 using namespace std;
 
-//string *Name=new string[1];
-//string *Email=new string[1];
-//string *Password=new string[1];
-//int *Balnce=new int[1];
-
-
-vector<string>Name;
-vector<string>Email;
-vector<string>Password;
-vector<int>Balnce;
-
-
-
-//string Name[100];
-//string Email[100];
-//string Password[100];
-//int Balnce[100];
-
-
+string Name[10000000];
+string Email[10000000];
+string Password[10000000];
+int Balnce[10000000];
     int numofAccount{0};
 /**
 string *Visa_Time=new string [1];
@@ -48,11 +33,8 @@ void creat_account();
 
 /************************************************/
 bool find_Name(string searching_name);//just take the input form the praater list and return what if this name is exsit or not , just return true or false
-
 void Search_for_name();//ask the user to enter a name and tell him if does it exsit or not
-
 /************************************************/
-
 
 void show_account(const int index_of_the_account);//by using index of the account print the all user staff like name and email and visa expire data
 
@@ -111,7 +93,6 @@ int main() {
                             default: cout<<"you entered a wrong command "<<endl;
                         }
 
-
                     }else{
                         int CheckTest=Login_check();
                         if (CheckTest>=0){
@@ -137,27 +118,14 @@ int main() {
 
 void creat_account(){
 /**
-* task 1
-*/
-//test case on the regular array
-//Name[0]="mostafa";
-//Password[0]="1234";
-//numofAccount++;
-//Name[1]="aka";
-//Password[1]="1234";
-//numofAccount++;
-
-///test cases using vector
-Name.push_back("mostafa");
-Password.push_back("1234");
-Balnce.push_back(200);
+*task 1
+**/
+Name[0]="mostafa";
+Password[0]="1234";
 numofAccount++;
-
-Name.push_back("osm");
-Password.push_back("1234");
-Balnce.push_back(50);
+Name[1]="moca";
+Password[1]="1234";
 numofAccount++;
-
 
 }
 
@@ -195,11 +163,11 @@ void Search_for_name(){
 
 
 void show_account(const int index_of_the_account){
-
-/**
-*task 3
-*/
-
+        /// muhammad AbdElrahaman (task 3)
+        cout << "Name: " << Name[index_of_the_account] << endl;
+        cout << "Balnce: " << Balnce[index_of_the_account] << endl;
+        cout << "Email: " << Email[index_of_the_account] <<endl;
+        cout <<endl;
 }
 
 
@@ -223,9 +191,9 @@ void Withdraw(int index_of_the_account){
 
 
 void Check_Balance(int index_of_the_account){
-/**
-*task 6
-*/
+    //Fady Alber (task 6)
+    cout<<"==============================="<<endl;
+    cout<<"Your current balance is: "<<Balnce[index_of_the_account]<<"$"<<endl;
 }
 void check_visa_validation(){
 
@@ -264,8 +232,6 @@ int Interface(){
     cin>>choice;
     return choice;
 }
-
-
 
 
 int Login_check(){
