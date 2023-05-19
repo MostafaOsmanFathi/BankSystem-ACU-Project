@@ -1,18 +1,15 @@
 #include <iostream>
 #include <string>
 #include <ctime>
-#include <iomanip>
 using namespace std;
 
-string Name[10000000];
+string UserName[10000000];
 string Email[10000000];
 string Password[10000000];
-int Balnce[10000000]{0};
+int Balance[10000000]{0};
 short  int year[10000000],month[10000000],day[10000000]; // visa validation date
  int numofAccount{0};
-/**
-string *Visa_Time=new string [1];
-*/
+
 
 ///finshed function pls don't edit it or just tell (Mostafa Osman) or the leader  (Abdel Rhman)
 void cridet();
@@ -22,35 +19,37 @@ void end_program();
 int Interface();//it out the user interface and choice panel and return user choice to the switch
 
 int Login_check();
-//it return the index of the account it return x>0 if it the login is right and -1 if password is wrong and -2 if it didn't found the name
+//it return the index of the account it return x>0 if it the login is right and -1 if password is wrong and -2 if it didn't found the UserName
 ///=====================================================================
 ///================================== Needed function ==================
 
 void creat_account();
-/**ask the user for his info like name and email and password and all of these staff
+/**ask the user for his info like UserName and email and password and all of these staff
  * and add the new account to the last index by num of account and don't forget to increment the numofAccount by one
  * */
 
 /************************************************/
-bool find_Name(string searching_name);//just take the input form the praater list and return what if this name is exsit or not , just return true or false
-void Search_for_name();//ask the user to enter a name and tell him if does it exsit or not
+bool find_Name(const string& searching_name);//just take the input form the praater list and return what if this UserName is exsit or not , just return true or false
+void Search_for_name();//ask the user to enter a UserName and tell him if does it exsit or not
 /************************************************/
 
-void show_account(const int index_of_the_account);//by using index of the account print the all user staff like name and email and visa expire data
+void show_account(const int& index_of_the_account);//by using index of the account print the all user staff like UserName and email and visa expire data
 
-void Deposit(const int index_of_the_account);
-/**it will go balnce of the index that in the pramterlist
+void Deposit(const int& index_of_the_account);
+/**it will go Balance of the index that in the pramterlist
  * and ask the user for the amount that he want to add and then add the mony
  * */
 
-void Withdraw(const int index_of_the_account);
+void Withdraw(const int& index_of_the_account);
 /**check if the mony amount that the user want to take is greater than of the account or not
- * and if the accunt has enough mony substract the mony from it's balnce if not tell him not enough mony
+ * and if the accunt has enough mony substract the mony from it's Balance if not tell him not enough mony
  * */
 
-void Check_Balance(int index_of_the_account);// tell the user it's balnce accsese the balnce from index that is provided in the pramater list
+void Check_Balance(const int& index_of_the_account);// tell the user it's Balance accsese the Balance from index that is provided in the pramater list
 
-void check_visa_validation(const int index_of_the_account);   //cheack if the visa has expired or not
+void check_visa_validation(const int& index_of_the_account);   //cheack if the visa has expired or not
+
+void ChangePassword(const int& index_of_the_account);
 
 ///======================================================================
 int main() {
@@ -68,22 +67,24 @@ int main() {
                     cout<<"==============================="<<endl;
                     if (islocked==false){
                         switch (Interface()) {
-                            case 1:   Search_for_name();    //search fucntion and tell us what if entered account name exsit or not
+                            case 1:   Search_for_name();    //search fucntion and tell us what if entered account UserName exsit or not
                                 break;
                             case 2:    creat_account();  //creat a New account function
                                 break;
                             case 3:   show_account(current_account_location);  //show account fucntion it print all accoutn detetials
                                 break;
-                            case 4:   Deposit(current_account_location);  //Deposit function add mony to balnce
+                            case 4:   Deposit(current_account_location);  //Deposit function add mony to Balance
                                 break;
-                            case 5:    Withdraw(current_account_location); //Withdrawal function substract mony from balnce and check if it not the taken mony is greater than the mony that do you have or not
+                            case 5:    Withdraw(current_account_location); //Withdrawal function substract mony from Balance and check if it not the taken mony is greater than the mony that do you have or not
                                 break;
                             case 6:   Check_Balance(current_account_location);//Check_Balance tell us how much this account have accout
                                 break;
                             case 7:     check_visa_validation(current_account_location);//check the visa is valid or not
                                 break;
-                            case 8:
+                            case 8:ChangePassword(current_account_location);
+                                break;
                             case 9:
+                                cout<<"you logged out"<<endl;
                                 islocked= true;
                                 break;
                             case 10:cridet(); //cridet of the crieator
@@ -98,11 +99,11 @@ int main() {
                         if (CheckTest>=0){
                             islocked=false;
                             current_account_location=CheckTest;
-                            cout<<"welcome "<<Name[current_account_location]<<" to your account"<<endl;
+                            cout<<"welcome "<<UserName[current_account_location]<<" to your account"<<endl;
                             continue;
                         }
                         else if(CheckTest==-2){
-                            cout<<"Name does not exist"<<endl;
+                            cout<<"UserName does not exist"<<endl;
                         }
                         else {
                             cout<<"passowrd is worng"<<endl;
@@ -117,96 +118,144 @@ int main() {
 }
 
 void creat_account(){
-/**
-*task 1
-**/
-Name[0]="mostafa";
-Password[0]="1234";
-numofAccount++;
-Name[1]="moca";
-Password[1]="1234";
-numofAccount++;
+    cout<<"=========== Creat Account ============"<<endl;
+    string UserName2, email, password;
+    int balance;
+    short int exp_year, exp_month, exp_day;
+
+    cout << "Enter UserName: ";
+    cin >> UserName2;
+
+    if (find_Name(UserName2)) {
+        cout << "Account already exists!" << endl;
+
+        return;
+    }else{cout<<"UserName does not exist you can use it"<<endl;}
+
+    cout << "Enter email: ";
+    cin >> email;
+
+    cout << "Enter password: ";
+    cin >> password;
+
+    cout << "Enter balance: ";
+    cin >> balance;
+
+    cout << "Enter visa expiration date (year month day): ";
+    cin >> exp_year >> exp_month >> exp_day;
+
+    UserName[numofAccount] = UserName2;
+    Email[numofAccount] = email;
+    Password[numofAccount] = password;
+    Balance[numofAccount] = balance;
+    year[numofAccount] = exp_year;
+    month[numofAccount] = exp_month;
+    day[numofAccount] = exp_day;
+
+    numofAccount++;
+    cout << "Account created successfully!" << endl;
 
 }
 
-bool find_Name(string searching_name){
+bool find_Name(const string& searching_name){
         /// Samuel Malak (task 2)
-    // Search for the name in the array.
+    // Search for the UserName in the array.
     for (int i = 0; i < numofAccount; i++) {
-        if (Name[i] == searching_name) {
-            //if the name is exisit return true
+        if (UserName[i] == searching_name) {
+            //if the UserName is exisit return true
             return true;
         }
     }
 
-    // The name was not found.
+    // The UserName was not found.
     return false;
 }
 
 void Search_for_name(){
     /// Samuel Malak (task 2)
+    cout<<"=========== Search For UserName ============"<<endl;
+
     string searchingName;
-    cout << "Enter the name to search for: ";
+    cout << "Enter the UserName to search for: ";
     cin >> searchingName;
 
-    // Check if the name is in the list.
-    bool found = find_Name(searchingName);
+    // Check if the UserName is in the list.
+    bool found =find_Name(searchingName);
 
     // Print the result.
     if (found) {
-        cout << "The name " << searchingName << " was found in the list." << endl;
+        cout << "The UserName " << searchingName << " was found in the list." << endl;
     }
     else {
-        cout << "The name " << searchingName << " was not found in the list." << endl;
+        cout << "The UserName " << searchingName << " was not found in the list." << endl;
     }
 }
 
 
-void show_account(const int index_of_the_account){
+void show_account(const int& index_of_the_account){
+    cout<<"=========== show Account ============"<<endl;
+
         /// muhammad AbdElrahaman (task 3)
-        cout << "Name: " << Name[index_of_the_account] << endl;
-        cout << "Balnce: " << Balnce[index_of_the_account] << endl;
+        cout << "UserName: " << UserName[index_of_the_account] << endl;
+        cout << "Balance: " << Balance[index_of_the_account] << endl;
         cout << "Email: " << Email[index_of_the_account] <<endl;
+        cout << "visa validation date: "<<day[index_of_the_account]<<"/"<<month[index_of_the_account]<<"/"<<year[index_of_the_account];
         cout <<endl;
 }
 
 
-void Deposit(int index_of_the_account){
-    //Omar maged gomaa (task 4)
+void Deposit(const int& index_of_the_account){
+    ///Omar maged gomaa (task 4)
+    cout<<"=========== Deposit ============"<<endl;
+
     int amountOfMony;
     cout<< " enter the amount of money you want to deposit :";
     cin>> amountOfMony;
-    Balnce [index_of_the_account] = (amountOfMony + Balnce [index_of_the_account]);
-    cout<< "transaction completed and now you have "<<Balnce[index_of_the_account]<<"$"<<endl;
+    Balance [index_of_the_account] = (amountOfMony + Balance [index_of_the_account]);
+    cout<< "transaction completed and now you have "<<Balance[index_of_the_account]<<"$"<<endl;
 
 }
 
-void Withdraw(int index_of_the_account){
+void Withdraw(const int& index_of_the_account){
+    cout<<"========== Withdraw ============="<<endl;
 
-/**
-*task 5
-*/
+    int amount;
+    cout << "Enter amount to withdraw: ";
+    cin >> amount ;
+
+    if(amount <= Balance[index_of_the_account]) {
+        Balance[index_of_the_account] -= amount;
+        cout << "Your current balance is: " << Balance[index_of_the_account] <<"$"<< endl;
+    }
+    else {
+        cout << "Not enough balance." << endl;
+
+    }
+
 
 }
 
 
-void Check_Balance(const int index_of_the_account){
-    //Fady Alber (task 6)
-    cout<<"==============================="<<endl;
-    cout<<"Your current balance is: "<<Balnce[index_of_the_account]<<"$"<<endl;
+void Check_Balance(const int& index_of_the_account){
+    ///Fady Alber (task 6)
+    cout<<"======== Check Balance ============="<<endl;
+    cout<<"Your current balance is: "<<Balance[index_of_the_account]<<"$"<<endl;
 }
-void check_visa_validation(const int index_of_the_account){
+void check_visa_validation(const int& index_of_the_account){
+    ///Mostafa Osman (task 7)
+    cout<<"======== check visa validation ============="<<endl;
+
     string monthes[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
-    time_t now=time(0);// get time current Time in sec
+    time_t now=time(nullptr);// get time current Time in sec
     string timeInString= ::ctime(&now); //make the sec Time to readable string
 
     int currentYear= stoi(timeInString.substr(timeInString.size()-5,4));//cut the year part from ctime string
-    string month=timeInString.substr(4,3);//cut the month part from ctime string
+    string month_str=timeInString.substr(4,3);//cut the month part from ctime string
     int currentDay= stoi(timeInString.substr(8,2));//cut the Day part from ctime string
 
-    int currentMonth{0};//change the month name form name to nuber for example jan will be number 1 mar will be number 2
+    int currentMonth{0};//change the month UserName form UserName to nuber for example jan will be number 1 mar will be number 2
     for (int i = 0; i <12; ++i) {
-        if (month==monthes[i]) { currentMonth = i + 1;break; }
+        if (month_str==monthes[i]) { currentMonth = i + 1;break; }
     }
 
     //if the visa time is vialed will print that otherwise will print that visa is expaired
@@ -218,6 +267,23 @@ void check_visa_validation(const int index_of_the_account){
         cout<<"Your visa is Expired"<<endl;
     }
 }
+void ChangePassword(const int& index_of_the_account){
+    cout<<"======== ChangePassword ============="<<endl;
+
+    cout<<"enter the old password for the user UserName "<<UserName[index_of_the_account]<<": ";
+string OldPassword;cin>>OldPassword;
+    if (OldPassword==Password[index_of_the_account]){
+        cout<<"Correct password"<<endl;
+        cout<<"Enter the New Password: ";
+        string NewPassword;
+        cin>>NewPassword;
+        Password[index_of_the_account]=NewPassword;
+        cout<<"your Password has changed successfully"<<endl;
+    }else{
+        cout<<"wrong password"<<endl;
+    }
+
+}
 ///===========================================
 void end_program(){
     cout<<endl<<"thanks for using our program"<<endl;
@@ -227,15 +293,17 @@ void end_program(){
 
 
 int Interface(){
+    cout<<"======== Interface ============="<<endl;
+
     int choice;
-    cout<<"for search for the account Name  :(1):"<<endl;
+    cout<<"for search for the account UserName  :(1):"<<endl;
     cout<<"for creat a New Account :(2):"<<endl;
     cout<<"for ShowAccount :(3):"<<endl;
     cout<<"for Deposit :(4):"<<endl;
     cout<<"for Withdrawal :(5):"<<endl;
     cout<<"for showing account balance:(6):"<<endl;
     cout<<"for checking the visa is valid or not :(7):"<<endl;
-    cout<<"for login to another account :(8):"<<endl;
+    cout<<"for changing password:(8):"<<endl;
     cout<<"for logout press :(9):"<<endl;
     cout<<"for credit of the creators:(10):"<<endl;
     cout<<"to end the program press :(11):"<<endl;
@@ -246,14 +314,15 @@ int Interface(){
 
 
 int Login_check(){
+    cout<<"=========== Login ============="<<endl;
 
     string LUserName, Lpassowrd;
-    cout<<"enter your name:";cin>>LUserName;
+    cout<<"enter your UserName:";cin>>LUserName;
     cout<<"enter your password:";cin>>Lpassowrd;
     if (numofAccount==0)return -2;
     else {
         for (int i = 0; i < numofAccount; ++i) {
-            if (LUserName == Name[i]) {
+            if (LUserName == UserName[i]) {
                 if (Lpassowrd == Password[i])return i;
                 else return -1;
             }
@@ -262,6 +331,14 @@ int Login_check(){
     }
 }
 void cridet(){
-    // every one write it's name and ID here pls
-    cout<<"Name: Mostafa Osman || ID:42210104"<<endl;
+    cout<<"========= cridet ======================"<<endl;
+cout<<"Name: Mostafa Osman Fathi || ID: 42210104\n"
+      "Name: Abdulrahman Reda    || ID: 42110115\n"
+      "Name: Samuel Malak        || ID: 42210275\n"
+      "Name: Omar Maged          || ID: 42210181\n"
+      "Name: Muhammad Abdelrahamn|| ID: 42210176\n"
+      "Name: Fady Alber          || ID: 42210136\n"
+      "Name: Ahmed Haytham       || ID: 42210126\n"
+      "Name: Nour Mahmoud        || ID: 42210327\n"
+      "==========================================="<<endl;
 }
