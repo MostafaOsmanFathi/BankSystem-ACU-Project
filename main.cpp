@@ -8,8 +8,9 @@ using namespace std;
 string Name[10000000];
 string Email[10000000];
 string Password[10000000];
-int Balnce[10000000];
-    int numofAccount{0};
+int Balnce[10000000]{0};
+short  int year[10000000],month[10000000],day[10000000]; // visa validation date
+ int numofAccount{0};
 /**
 string *Visa_Time=new string [1];
 */
@@ -50,7 +51,7 @@ void Withdraw(const int index_of_the_account);
 
 void Check_Balance(int index_of_the_account);// tell the user it's balnce accsese the balnce from index that is provided in the pramater list
 
-void check_visa_validation();   //cheack if the visa has expired or not
+void check_visa_validation(const int index_of_the_account);   //cheack if the visa has expired or not
 
 ///======================================================================
 int main() {
@@ -80,7 +81,7 @@ int main() {
                                 break;
                             case 6:   Check_Balance(current_account_location);//Check_Balance tell us how much this account have accout
                                 break;
-                            case 7:     check_visa_validation();//check the visa is valid or not
+                            case 7:     check_visa_validation(current_account_location);//check the visa is valid or not
                                 break;
                             case 8:
                             case 9:
@@ -172,7 +173,7 @@ void show_account(const int index_of_the_account){
 
 
 void Deposit(int index_of_the_account){
-    //Omar maged gomaa (task 2)
+    //Omar maged gomaa (task 4)
     int x;
     cout<< " enter the amount of money you want to deposit :";
     cin>> x;
@@ -190,26 +191,29 @@ void Withdraw(int index_of_the_account){
 }
 
 
-void Check_Balance(int index_of_the_account){
+void Check_Balance(const int index_of_the_account){
     //Fady Alber (task 6)
     cout<<"==============================="<<endl;
     cout<<"Your current balance is: "<<Balnce[index_of_the_account]<<"$"<<endl;
 }
-void check_visa_validation(){
+void check_visa_validation(const int index_of_the_account){
+    time_t now = time(0); // get current date and time
+    tm* ltm = localtime(&now);
+    int currentYear= 1900 + ltm->tm_year; // print the year
+    int currentMonth= 1 + ltm->tm_mon; // print month number
+    int currentDay= ltm->tm_mday; // print the day
 
-/**
-*task 7
-*/
-
+    if (currentYear<year[index_of_the_account]||
+        currentYear==year[index_of_the_account] && currentMonth<month[index_of_the_account]||
+        currentYear==year[index_of_the_account] && currentMonth==month[index_of_the_account] && currentDay<day[index_of_the_account]){
+        cout<<"your visa is valiad"<<endl;
+    }else{
+        cout<<"Your visa is Expired"<<endl;
+    }
 }
 ///===========================================
 void end_program(){
     cout<<endl<<"thanks for using our program"<<endl;
-//    delete [] Name;
-//    delete [] Email;
-//    delete [] Password;
-//    ///delete [] Visa_Time;
-//    delete [] Balnce;
     exit(0);
 }
 
