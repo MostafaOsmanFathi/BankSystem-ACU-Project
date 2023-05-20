@@ -130,15 +130,28 @@ void creat_account(){
 
     cout << "Enter email: ";
     cin >> email;
-
-    cout << "Enter password: ";
-    cin >> password;
-    if (!checkPassword(password)){
-        cout<<"password not valid\n"
-              "make sure that your password your password is at lest 8 characters and has lowercase and uppercase and spiceal character"<<endl;
-        cout<<"creat account Field"<<endl;
+/// ******* Fady Alber ***********
+    bool isValidPassword = false;
+    int attempts = 0;
+    while (!isValidPassword && attempts < 3) {
+        cout << "Enter password: ";
+        cin >> password;
+        if (!checkPassword(password)) {
+            cout << "Password not valid\n"
+                 << "Make sure that your password is at least 8 characters and has lowercase and uppercase and special character\n"
+                 << "Create account field\n" << endl;
+            attempts++;
+        } else {
+            isValidPassword = true;
+        }
+    }
+    if (attempts == 3) {
+        cout<< "Create account field\n" << endl;
+        cout<< "You have exceeded the maximum number of attempts. Please try again later." << endl;
+        cout<< "Create account field"<< endl;
         return;
     }
+///*********************** attempts idea and it's work *****************
     cout << "Enter balance: ";
     cin >> balance;
 
