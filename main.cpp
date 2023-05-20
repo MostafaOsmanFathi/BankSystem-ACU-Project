@@ -11,7 +11,6 @@ short  int year[10000000],month[10000000],day[10000000]; // visa validation date
 int numofAccount{0};
 
 
-void cridet();
 void end_program(); //it will finish the program
 
 int FullInterface(  int  index_of_the_account);    //Full Acssecse Interface reqired login
@@ -67,8 +66,6 @@ int main() {
                 case 9:
                     cout<<"you logged out"<<endl;
                     islocked= true;
-                    break;
-                case 10:cridet(); //cridet of the crieator
                     break;
                 case 11:end_program();
                     break;
@@ -298,7 +295,6 @@ int FullInterface(  int  index_of_the_account){
           "Checking the visa validation    :(7):\n"
           "Changing password               :(8):\n"
           "Logout press                    :(9):\n"
-          "Credit of the creators          :(10):\n"
           "End the program press           :(11):\n"
           "Enter your Choice: ";
     cin>>choice;
@@ -332,16 +328,4 @@ int Login_check(){
         }
         return -2;
     }
-}
-void cridet(){
-    cout<<"========= cridet ======================"<<endl;
-    cout<<"Name: Mostafa Osman Fathi || ID: 42210104\n"
-          "Name: Abdulrahman Reda    || ID: 42110115\n"
-          "Name: Samuel Malak        || ID: 42210275\n"
-          "Name: Omar Maged          || ID: 42210181\n"
-          "Name: Muhammad Abdelrahamn|| ID: 42210176\n"
-          "Name: Fady Alber          || ID: 42210136\n"
-          "Name: Ahmed Haytham       || ID: 42210126\n"
-          "Name: Nour Mahmoud        || ID: 42210327\n"
-          "==========================================="<<endl;
 }
