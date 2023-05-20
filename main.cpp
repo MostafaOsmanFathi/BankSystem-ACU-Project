@@ -20,7 +20,7 @@ int Login_check();  //it return the index of the account it return x>0 if it the
 
 
 void creat_account();//creat a new account
-
+bool checkPassword(const string& password);
 
 bool find_Name(const string& searching_name);//search for name and return true or false if does it exist or not
 
@@ -133,7 +133,12 @@ void creat_account(){
 
     cout << "Enter password: ";
     cin >> password;
-
+    if (!checkPassword(password)){
+        cout<<"password not valid\n"
+              "make sure that your password your password is at lest 8 characters and has lowercase and uppercase and spiceal character"<<endl;
+        cout<<"creat account Field"<<endl;
+        return;
+    }
     cout << "Enter balance: ";
     cin >> balance;
 
@@ -152,6 +157,37 @@ void creat_account(){
     cout << "Account created successfully!" << endl;
 
 }
+bool checkPassword(const string& password) {
+    /// Fady Alber over task
+    bool hasUpperCase = false;
+    bool hasLowerCase = false;
+    bool hasNumber = false;
+    bool hasSpecialChar = false;
+
+    if (password.length() < 8) {
+        return false;
+    }
+
+    for (int i = 0; i < password.length(); i++) {
+        if (isupper(password[i])) {
+            hasUpperCase = true;
+        }else if(islower(password[i])){
+            hasLowerCase= true;
+        } else if (isdigit(password[i])) {
+            hasNumber = true;
+        } else if (!isdigit(password[i])&&!isalpha(password[i])) {
+            hasSpecialChar = true;
+        }
+
+        if (hasUpperCase && hasNumber && hasSpecialChar&&hasLowerCase) {
+            return true;
+        }
+    }
+
+    return false;
+
+}
+
 
 bool find_Name(const string& searching_name){
     /// Samuel Malak (task 2)
@@ -265,13 +301,20 @@ void check_visa_validation(const int& index_of_the_account){
 }
 void ChangePassword(const int& index_of_the_account){
     cout<<"======== ChangePassword ============="<<endl;
-
+    ///Ahamed Haythem over task
     cout<<"enter the old password for the user UserName "<<UserName[index_of_the_account]<<": ";
     string OldPassword;cin>>OldPassword;
     if (OldPassword==Password[index_of_the_account]){
         cout<<"Correct password"<<endl;
         cout<<"Enter the New Password: ";
         string NewPassword;
+        if (!checkPassword(NewPassword)){
+            cout<<"password not valid\n"
+            "make sure that your password your password is at lest 8 characters and has lowercase and uppercase and spiceal character"<<endl;
+            cout<<"sory your password didn't created"<<endl;
+            return;
+        }
+
         cin>>NewPassword;
         Password[index_of_the_account]=NewPassword;
         cout<<"your Password has changed successfully"<<endl;
