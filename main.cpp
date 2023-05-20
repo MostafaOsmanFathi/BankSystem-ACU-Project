@@ -8,14 +8,14 @@ string Email[10000000];
 string Password[10000000];
 int Balance[10000000]{0};
 short  int year[10000000],month[10000000],day[10000000]; // visa validation date
- int numofAccount{0};
+int numofAccount{0};
 
 
 void cridet();
 void end_program(); //it will finish the program
 
-int Interface();    //it out the user interface and choice panel and return user choice to the switch
-
+int FullInterface(const int& index_of_the_account);    //Full Acssecse Interface reqired login
+int SmallInterface();   //small Acssecse Interface not reqired login
 int Login_check();  //it return the index of the account it return x>0 if it the login is right and -1 if password is wrong and -2 if it didn't found the UserName
 
 
@@ -42,66 +42,73 @@ void ChangePassword(const int& index_of_the_account);//change password
 
 ///======================================================================
 int main() {
-        cout<<"=============== Welcome to our Bank system============="<<endl;
-        cout<<"your the first user and you don't have accounts"<<endl;
-        cout<<"if you want to make a new accoutt press (Y,y): ";
-            char choice;cin>>choice;
-            if (choice=='y'||choice=='Y'){
-                    ///=== new user must have a new account===
-                     creat_account();
-                     ///=======================================
-                    bool islocked{true};
-                    int current_account_location;
-                while (true){
-                    cout<<"==============================="<<endl;
-                    if (islocked==false){
-                        switch (Interface()) {
-                            case 1:   Search_for_name();    //search fucntion and tell us what if entered account UserName exsit or not
-                                break;
-                            case 2:    creat_account();  //creat a New account function
-                                break;
-                            case 3:   show_account(current_account_location);  //show account fucntion it print all accoutn detetials
-                                break;
-                            case 4:   Deposit(current_account_location);  //Deposit function add mony to Balance
-                                break;
-                            case 5:    Withdraw(current_account_location); //Withdrawal function substract mony from Balance and check if it not the taken mony is greater than the mony that do you have or not
-                                break;
-                            case 6:   Check_Balance(current_account_location);//Check_Balance tell us how much this account have accout
-                                break;
-                            case 7:     check_visa_validation(current_account_location);//check the visa is valid or not
-                                break;
-                            case 8:ChangePassword(current_account_location);
-                                break;
-                            case 9:
-                                cout<<"you logged out"<<endl;
-                                islocked= true;
-                                break;
-                            case 10:cridet(); //cridet of the crieator
-                                break;
-                            case 11:end_program();
-                                break;
-                            default: cout<<"you entered a wrong command "<<endl;
-                        }
+    cout<<"=============== Welcome to our Bank system============="<<endl;
+    bool islocked{true};
+    int current_account_location;
+    while (true){
+        cout<<"==============================="<<endl;
+        if (islocked==false){
+            switch (FullInterface(current_account_location)) {
+                case 1:   Search_for_name();    //search fucntion and tell us what if entered account UserName exsit or not
+                    break;
+                case 2:    creat_account();  //creat a New account function
+                    break;
+                case 3:   show_account(current_account_location);  //show account fucntion it print all accoutn detetials
+                    break;
+                case 4:   Deposit(current_account_location);  //Deposit function add mony to Balance
+                    break;
+                case 5:    Withdraw(current_account_location); //Withdrawal function substract mony from Balance and check if it not the taken mony is greater than the mony that do you have or not
+                    break;
+                case 6:   Check_Balance(current_account_location);//Check_Balance tell us how much this account have accout
+                    break;
+                case 7:     check_visa_validation(current_account_location);//check the visa is valid or not
+                    break;
+                case 8:ChangePassword(current_account_location);
+                    break;
+                case 9:
+                    cout<<"you logged out"<<endl;
+                    islocked= true;
+                    break;
+                case 10:cridet(); //cridet of the crieator
+                    break;
+                case 11:end_program();
+                    break;
+                default: cout<<"you entered a wrong command "<<endl;
+            }
 
-                    }else{
-                        int CheckTest=Login_check();
-                        if (CheckTest>=0){
-                            islocked=false;
-                            current_account_location=CheckTest;
-                            cout<<"welcome "<<UserName[current_account_location]<<" to your account"<<endl;
-                            continue;
-                        }
-                        else if(CheckTest==-2){
-                            cout<<"UserName does not exist"<<endl;
-                        }
-                        else {
-                            cout<<"passowrd is worng"<<endl;
-                        }
+        }else{
+
+            switch (SmallInterface()) {
+                case 1:creat_account();
+                    break;
+                case 2:{int CheckTest=Login_check();
+                    if (CheckTest>=0){
+                        islocked=false;
+                        current_account_location=CheckTest;
+                        cout<<"welcome "<<UserName[current_account_location]<<" to your account"<<endl;
+                        continue;
+                    }
+                    else if(CheckTest==-2){
+                        cout<<"UserName does not exist"<<endl;
+                    }
+                    else {
+                        cout<<"passowrd is worng"<<endl;
                     }
                 }
+                    break;
+                case 3:Search_for_name();
+                    break;
+                case 4:end_program();
+                    break;
+                default:cout<<"you entered a wrong command"<<endl;
+            }
 
 
-            }else end_program();
+        }
+    }
+
+
+
 
     return 0;
 }
@@ -147,7 +154,7 @@ void creat_account(){
 }
 
 bool find_Name(const string& searching_name){
-        /// Samuel Malak (task 2)
+    /// Samuel Malak (task 2)
     // Search for the UserName in the array.
     for (int i = 0; i < numofAccount; i++) {
         if (UserName[i] == searching_name) {
@@ -184,12 +191,12 @@ void Search_for_name(){
 void show_account(const int& index_of_the_account){
     cout<<"=========== show Account ============"<<endl;
 
-        /// muhammad AbdElrahaman (task 3)
-        cout << "UserName: " << UserName[index_of_the_account] << endl;
-        cout << "Balance: " << Balance[index_of_the_account] << endl;
-        cout << "Email: " << Email[index_of_the_account] <<endl;
-        cout << "visa validation date: "<<day[index_of_the_account]<<"/"<<month[index_of_the_account]<<"/"<<year[index_of_the_account];
-        cout <<endl;
+    /// muhammad AbdElrahaman (task 3)
+    cout << "UserName: " << UserName[index_of_the_account] << endl;
+    cout << "Balance: " << Balance[index_of_the_account] << endl;
+    cout << "Email: " << Email[index_of_the_account] <<endl;
+    cout << "visa validation date: "<<day[index_of_the_account]<<"/"<<month[index_of_the_account]<<"/"<<year[index_of_the_account];
+    cout <<endl;
 }
 
 
@@ -260,7 +267,7 @@ void ChangePassword(const int& index_of_the_account){
     cout<<"======== ChangePassword ============="<<endl;
 
     cout<<"enter the old password for the user UserName "<<UserName[index_of_the_account]<<": ";
-string OldPassword;cin>>OldPassword;
+    string OldPassword;cin>>OldPassword;
     if (OldPassword==Password[index_of_the_account]){
         cout<<"Correct password"<<endl;
         cout<<"Enter the New Password: ";
@@ -281,23 +288,32 @@ void end_program(){
 
 
 
-int Interface(){
-    cout<<"======== Interface ============="<<endl;
-
+int FullInterface(const int& index_of_the_account){
+    cout<<"======== Full InterFace for: "<<UserName[index_of_the_account]<<" Account============="<<endl;
     int choice;
-    cout<<"for search for the account UserName  :(1):\n"
-          "for creat a New Account :(2):\n"
-          "for ShowAccount :(3):\n"
-          "for Deposit :(4):\n"
-          "for Withdrawal :(5):\n"
-          "for showing account balance:(6):\n"
-          "for checking the visa is valid or not :(7):\n"
-          "for changing password:(8):\n"
-          "for logout press :(9):\n"
-          "for credit of the creators:(10):\n"
-          "to end the program press :(11):\n"
-          "enter your choice: ";
+    cout<<"Search for the account UserName :(1):\n"
+          "Creat a New Account             :(2):\n"
+          "ShowAccount                     :(3):\n"
+          "Deposit                         :(4):\n"
+          "Withdrawal                      :(5):\n"
+          "Showing account balance         :(6):\n"
+          "Checking the visa validation    :(7):\n"
+          "Changing password               :(8):\n"
+          "Logout press                    :(9):\n"
+          "Credit of the creators          :(10):\n"
+          "End the program press           :(11):\n"
+          "Enter your Choice: ";
     cin>>choice;
+    return choice;
+}
+int SmallInterface(){
+    cout<<"================ Small InterFace ==================\n";
+    int choice;
+    cout<<"creat a new account     :(1):\n"
+          "login into account      :(2):\n"
+          "search for account name :(3):\n"
+          "end the program         :(4):\n"
+          "enter your choice:";cin>>choice;
     return choice;
 }
 
@@ -321,13 +337,13 @@ int Login_check(){
 }
 void cridet(){
     cout<<"========= cridet ======================"<<endl;
-cout<<"Name: Mostafa Osman Fathi || ID: 42210104\n"
-      "Name: Abdulrahman Reda    || ID: 42110115\n"
-      "Name: Samuel Malak        || ID: 42210275\n"
-      "Name: Omar Maged          || ID: 42210181\n"
-      "Name: Muhammad Abdelrahamn|| ID: 42210176\n"
-      "Name: Fady Alber          || ID: 42210136\n"
-      "Name: Ahmed Haytham       || ID: 42210126\n"
-      "Name: Nour Mahmoud        || ID: 42210327\n"
-      "==========================================="<<endl;
+    cout<<"Name: Mostafa Osman Fathi || ID: 42210104\n"
+          "Name: Abdulrahman Reda    || ID: 42110115\n"
+          "Name: Samuel Malak        || ID: 42210275\n"
+          "Name: Omar Maged          || ID: 42210181\n"
+          "Name: Muhammad Abdelrahamn|| ID: 42210176\n"
+          "Name: Fady Alber          || ID: 42210136\n"
+          "Name: Ahmed Haytham       || ID: 42210126\n"
+          "Name: Nour Mahmoud        || ID: 42210327\n"
+          "==========================================="<<endl;
 }
