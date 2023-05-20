@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/mo528/CLionProjects/Sctions/oopagine/testPro
+# Install script for directory: C:/Users/mo528/CLionProjects/Sctions/Operator_Overloading/BankSystem-Easy
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/testPro")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/Bank_system")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/mo528/CLionProjects/Sctions/oopagine/testPro/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/mo528/CLionProjects/Sctions/Operator_Overloading/BankSystem-Easy/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

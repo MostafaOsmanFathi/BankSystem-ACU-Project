@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.24)
-project(Bank_system)
+project(Bank_system_Easy)
 
 set(CMAKE_CXX_STANDARD 17)
 

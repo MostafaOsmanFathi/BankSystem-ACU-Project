@@ -14,31 +14,30 @@ int numofAccount{0};
 void cridet();
 void end_program(); //it will finish the program
 
-int FullInterface(const int& index_of_the_account);    //Full Acssecse Interface reqired login
+int FullInterface(  int  index_of_the_account);    //Full Acssecse Interface reqired login
 int SmallInterface();   //small Acssecse Interface not reqired login
 int Login_check();  //it return the index of the account it return x>0 if it the login is right and -1 if password is wrong and -2 if it didn't found the UserName
 
 
 void creat_account();//creat a new account
-bool checkPassword(const string& password);
 
-bool find_Name(const string& searching_name);//search for name and return true or false if does it exist or not
+bool find_Name(  string  searching_name);//search for name and return true or false if does it exist or not
 
 void Search_for_name();//ask the user to enter a UserName and tell him if does it exist or not
 
 
-void show_account(const int& index_of_the_account);//by using index of the account print the all user staff like UserName and email and visa expire data
+void show_account(  int index_of_the_account);//by using index of the account print the all user staff like UserName and email and visa expire data
 
-void Deposit(const int& index_of_the_account);//add money to the account of the index that passed as parameter
+void Deposit(  int index_of_the_account);//add money to the account of the index that passed as parameter
 
 
-void Withdraw(const int& index_of_the_account);//substarct money to the account of the index that passed as parameter
+void Withdraw(  int index_of_the_account);//substarct money to the account of the index that passed as parameter
 
-void Check_Balance(const int& index_of_the_account);// tell the user it's Balance accsese the Balance from index that is provided in the pramater list
+void Check_Balance(  int index_of_the_account);// tell the user it's Balance accsese the Balance from index that is provided in the pramater list
 
-void check_visa_validation(const int& index_of_the_account);   //cheack if the visa has expired or not
+void check_visa_validation(  int index_of_the_account);   //cheack if the visa has expired or not
 
-void ChangePassword(const int& index_of_the_account);//change password
+void ChangePassword(  int index_of_the_account);//change password
 
 ///======================================================================
 int main() {
@@ -115,7 +114,7 @@ int main() {
 
 void creat_account(){
     cout<<"=========== Creat Account ============"<<endl;
-    string UserName2, email, password;
+    string UserName2, email, password2;
     int balance;
     short int exp_year, exp_month, exp_day;
 
@@ -129,26 +128,10 @@ void creat_account(){
 
     cout << "Enter email: ";
     cin >> email;
-/// ******* Fady Alber ***********
-    bool isValidPassword = false;
-    int attempts = 0;
-    while (!isValidPassword && attempts < 3) {
-        cout << "Enter password: ";
-        cin >> password;
-        if (!checkPassword(password)) {
-            cout << "Password not valid\n"
-                 << "Make sure that your password is at least 8 characters and has lowercase and uppercase and special character\n"<< endl;
-            attempts++;
-        } else {
-            isValidPassword = true;
-        }
-    }
-    if (attempts == 3) {
-        cout<< "You have exceeded the maximum number of attempts. Please try again later." << endl;
-        cout<< "Create account field"<< endl;
-        return;
-    }
-///*********************** attempts idea and it's work *****************
+
+    cout<<"Enter Password: ";
+    cin>>password2;
+
     cout << "Enter balance: ";
     cin >> balance;
 
@@ -157,7 +140,7 @@ void creat_account(){
 
     UserName[numofAccount] = UserName2;
     Email[numofAccount] = email;
-    Password[numofAccount] = password;
+    Password[numofAccount] = password2;
     Balance[numofAccount] = balance;
     year[numofAccount] = exp_year;
     month[numofAccount] = exp_month;
@@ -167,39 +150,8 @@ void creat_account(){
     cout << "Account created successfully!" << endl;
 
 }
-bool checkPassword(const string& password) {
-    /// Fady Alber over task
-    bool hasUpperCase = false;
-    bool hasLowerCase = false;
-    bool hasNumber = false;
-    bool hasSpecialChar = false;
 
-    if (password.length() < 8) {
-        return false;
-    }
-
-    for (int i = 0; i < password.length(); i++) {
-        if (isupper(password[i])) {
-            hasUpperCase = true;
-        }else if(islower(password[i])){
-            hasLowerCase= true;
-        } else if (isdigit(password[i])) {
-            hasNumber = true;
-        } else if (!isdigit(password[i])&&!isalpha(password[i])) {
-            hasSpecialChar = true;
-        }
-
-        if (hasUpperCase && hasNumber && hasSpecialChar&&hasLowerCase) {
-            return true;
-        }
-    }
-
-    return false;
-
-}
-
-
-bool find_Name(const string& searching_name){
+bool find_Name(  string searching_name){
     /// Samuel Malak (task 2)
     // Search for the UserName in the array.
     for (int i = 0; i < numofAccount; i++) {
@@ -234,7 +186,7 @@ void Search_for_name(){
 }
 
 
-void show_account(const int& index_of_the_account){
+void show_account(  int  index_of_the_account){
     cout<<"=========== show Account ============"<<endl;
 
     /// muhammad AbdElrahaman (task 3)
@@ -246,7 +198,7 @@ void show_account(const int& index_of_the_account){
 }
 
 
-void Deposit(const int& index_of_the_account){
+void Deposit(  int  index_of_the_account){
     ///Omar maged gomaa (task 4)
     cout<<"=========== Deposit ============"<<endl;
 
@@ -258,7 +210,7 @@ void Deposit(const int& index_of_the_account){
 
 }
 
-void Withdraw(const int& index_of_the_account){
+void Withdraw(  int  index_of_the_account){
     cout<<"========== Withdraw ============="<<endl;
 
     int amount;
@@ -278,12 +230,12 @@ void Withdraw(const int& index_of_the_account){
 }
 
 
-void Check_Balance(const int& index_of_the_account){
+void Check_Balance(  int  index_of_the_account){
     ///Fady Alber (task 6)
     cout<<"======== Check Balance ============="<<endl;
     cout<<"Your current balance is: "<<Balance[index_of_the_account]<<"$"<<endl;
 }
-void check_visa_validation(const int& index_of_the_account){
+void check_visa_validation(  int  index_of_the_account){
     ///Mostafa Osman (task 7)
     cout<<"======== check visa validation ============="<<endl;
     string monthes[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
@@ -309,7 +261,7 @@ void check_visa_validation(const int& index_of_the_account){
     }
 
 }
-void ChangePassword(const int& index_of_the_account){
+void ChangePassword(  int  index_of_the_account){
     cout<<"======== ChangePassword ============="<<endl;
     ///Ahamed Haythem over task
     cout<<"enter the old password for the user UserName "<<UserName[index_of_the_account]<<": ";
@@ -318,12 +270,6 @@ void ChangePassword(const int& index_of_the_account){
         cout<<"Correct password"<<endl;
         cout<<"Enter the New Password: ";
         string NewPassword;cin>>NewPassword;
-        if (!checkPassword(NewPassword)){
-            cout<<"password not valid\n"
-            "make sure that your password your password is at lest 8 characters and has lowercase and uppercase and spiceal character"<<endl;
-            cout<<"sory your password didn't created"<<endl;
-            return;
-        }
 
         Password[index_of_the_account]=NewPassword;
         cout<<"your Password has changed successfully"<<endl;
@@ -340,7 +286,7 @@ void end_program(){
 
 
 
-int FullInterface(const int& index_of_the_account){
+int FullInterface(  int  index_of_the_account){
     cout<<"======== Full InterFace for: "<<UserName[index_of_the_account]<<" Account============="<<endl;
     int choice;
     cout<<"Search for the account UserName :(1):\n"

@@ -27,7 +27,7 @@
 					[
 						0
 					],
-					"name" : "Bank_system",
+					"name" : "Bank_system_Easy",
 					"targetIndexes" : 
 					[
 						0
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/mo528/CLionProjects/Sctions/oopagine/testPro/cmake-build-debug",
-		"source" : "C:/Users/mo528/CLionProjects/Sctions/oopagine/testPro"
+		"build" : "C:/Users/mo528/CLionProjects/Sctions/Operator_Overloading/BankSystem-Easy/cmake-build-debug",
+		"source" : "C:/Users/mo528/CLionProjects/Sctions/Operator_Overloading/BankSystem-Easy"
 	},
 	"version" : 
 	{

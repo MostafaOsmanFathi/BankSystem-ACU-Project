@@ -1,4 +1,4 @@
-# BankSystem-ACU-Project
+# BankSystem-ACU-Project Easy Version
 # contributors:
 ### Name: Mostafa Osman Fathi || ID: 42210104     
 ### Name: Abdulrahman Reda    || ID: 42110115  
