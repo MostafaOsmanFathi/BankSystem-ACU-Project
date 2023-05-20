@@ -124,9 +124,8 @@ void creat_account(){
 
     if (find_Name(UserName2)) {
         cout << "Account already exists!" << endl;
-
         return;
-    }else{cout<<"UserName does not exist you can use it"<<endl;}
+    }
 
     cout << "Enter email: ";
     cin >> email;
@@ -138,15 +137,13 @@ void creat_account(){
         cin >> password;
         if (!checkPassword(password)) {
             cout << "Password not valid\n"
-                 << "Make sure that your password is at least 8 characters and has lowercase and uppercase and special character\n"
-                 << "Create account field\n" << endl;
+                 << "Make sure that your password is at least 8 characters and has lowercase and uppercase and special character\n"<< endl;
             attempts++;
         } else {
             isValidPassword = true;
         }
     }
     if (attempts == 3) {
-        cout<< "Create account field\n" << endl;
         cout<< "You have exceeded the maximum number of attempts. Please try again later." << endl;
         cout<< "Create account field"<< endl;
         return;
@@ -320,7 +317,7 @@ void ChangePassword(const int& index_of_the_account){
     if (OldPassword==Password[index_of_the_account]){
         cout<<"Correct password"<<endl;
         cout<<"Enter the New Password: ";
-        string NewPassword;
+        string NewPassword;cin>>NewPassword;
         if (!checkPassword(NewPassword)){
             cout<<"password not valid\n"
             "make sure that your password your password is at lest 8 characters and has lowercase and uppercase and spiceal character"<<endl;
@@ -328,7 +325,6 @@ void ChangePassword(const int& index_of_the_account){
             return;
         }
 
-        cin>>NewPassword;
         Password[index_of_the_account]=NewPassword;
         cout<<"your Password has changed successfully"<<endl;
     }else{
